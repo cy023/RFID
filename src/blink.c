@@ -1,12 +1,12 @@
 #define F_CPU 16000000UL
 #define LED_PIN 5
 
-#include <avr/io.h>
-#include <util/delay.h>
-#include <stdio.h>
+#include "uart.h"
 
 int main()
 {
+    NANO_stdio_set();
+    printf("hihi\n");
     DDRB |= (1 << LED_PIN);
     while (1)
     {
