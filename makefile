@@ -1,5 +1,6 @@
-FILENAME   = src/blink
-OBJ        = src/uart
+FILENAME   = src/main
+UART       = src/uart
+RFID	   = src/rfid
 PORT       = /dev/ttyUSB0
 DEVICE     = atmega328p
 PROGRAMMER = arduino
@@ -14,9 +15,10 @@ COMPILE    = avr-gcc -Wall -Os -mmcu=$(DEVICE) $(LINKER)
 all: compile upload terminal
 
 compile:
-	$(COMPILE) -c $(OBJ).c -o $(OBJ).o
+	$(COMPILE) -c $(UART).c -o $(UART).o
+	$(COMPILE) -c $(RFID).c -o $(RFID).o
 	$(COMPILE) -c $(FILENAME).c -o $(FILENAME).o
-	$(COMPILE) -o $(FILENAME).elf $(FILENAME).o $(OBJ).o
+	$(COMPILE) -o $(FILENAME).elf $(FILENAME).o $(UART).o $(RFID).o
 	avr-objcopy -j .text -j .data -O ihex $(FILENAME).elf $(FILENAME).hex
 	avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).elf
 
