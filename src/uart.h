@@ -13,8 +13,6 @@
 
 int stdio_putchar(char c, FILE *stream);
 int stdio_getchar(FILE *stream);
-void UNO_stdio_set(void);
-
-// static FILE STDIO_BUFFER = FDEV_SETUP_STREAM(stdio_putchar, stdio_getchar, _FDEV_SETUP_RW);
+void NANO_stdio_set(void);
 
 #endif
